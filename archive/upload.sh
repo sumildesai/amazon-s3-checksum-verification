@@ -1,7 +1,7 @@
 #!/bin/bash
 
-BUCKET_NAME="s3-verify-test"
-LOCAL_DIR="./mydir"
+BUCKET_NAME=""
+LOCAL_DIR=""
 ALGORITHM="CRC32C"
 
 for file in $(find "$LOCAL_DIR" -type f); do
