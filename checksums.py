@@ -5,6 +5,7 @@ import botocore
 import csv
 import argparse
 import sys
+from tqdm import tqdm
 from datetime import datetime
 
 parser = argparse.ArgumentParser(description='Retrieve and output checksums for S3 objects to a CSV file')
@@ -69,7 +70,7 @@ def main():
         
         writer.writeheader()
         
-        for key in list_s3_objects(bucket, prefix):
+        for key in tqdm(list_s3_objects(bucket, prefix), desc="Processing"):
             objectSummary = getObjectAttributes(key)
             checksum = s3checksumResult(objectSummary)
             writer.writerow({'ObjectKey': key, 'Checksum': checksum})
